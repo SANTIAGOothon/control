@@ -1,7 +1,7 @@
 /* 
  * File:   xc8_controltemp.c
  * Author: SANTIAGO
- *
+ *saniago_sob@hotmail.com
  * Created on 15 de julio de 2014, 09:50 PM
  */
 
@@ -38,7 +38,7 @@ int main(void)
       Gpios_PinDirection(GPIOS_PORTB,5,GPIOS_OUTPUT);/*control giro (B5) salida*/
  Gpios_PinDirection(GPIOS_PORTB,2,GPIOS_OUTPUT);/*control giro (B5) salida*/
  
-      Pwm_Init(PWM_PORT1, 30000); /*señal a 20KHz*/
+      Pwm_Init(PWM_PORT1, 30000); /*seï¿½al a 20KHz*/
 
       HD44780_Init();                                     /*inicliza el LCD*/
       xdev_out(HD44780_WriteData); /*establece elcd como salida*/
@@ -73,7 +73,7 @@ int main(void)
                {
                    Gpios_WritePin(GPIOS_PORTB, 2, 0);
 
-                   Pwm_DutyCycle(PWM_PORT1, PWM_CHANNEL_A, 120); /*Señal al 50%*/
+                   Pwm_DutyCycle(PWM_PORT1, PWM_CHANNEL_A, 120); /*Seï¿½al al 50%*/
                }   
                
             if(tem>setpot)
@@ -82,7 +82,7 @@ int main(void)
 
                Gpios_WritePin(GPIOS_PORTB,6,1); /*giro en un sentido*/
                   Gpios_WritePin(GPIOS_PORTB,5,0);
-                  Pwm_DutyCycle(PWM_PORT1, PWM_CHANNEL_A, pot); /*Señal al 50%*/
+                  Pwm_DutyCycle(PWM_PORT1, PWM_CHANNEL_A, pot); /*Seï¿½al al 50%*/
                }
                 
            }
