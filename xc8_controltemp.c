@@ -36,7 +36,7 @@ int main(void)
     
      Gpios_PinDirection(GPIOS_PORTB,6,GPIOS_OUTPUT);/*control giro (B6) salida*/
       Gpios_PinDirection(GPIOS_PORTB,5,GPIOS_OUTPUT);/*control giro (B5) salida*/
- Gpios_PinDirection(GPIOS_PORTB,2,GPIOS_OUTPUT);/*control giro (B5) salida*/
+ Gpios_PinDirection(GPIOS_PORTB,2,GPIOS_OUTPUT);/* (B2) salida*/
  
       Pwm_Init(PWM_PORT1, 30000); /*se�al a 20KHz*/
 
@@ -46,34 +46,34 @@ int main(void)
     while (1)
     {
    adc= Adc_u16Read(3); /*Se lee la lectura del canal 3 en el adc  A3*/
-   adc2= Adc_u16Read(2);
-   adc3= Adc_u16Read(7); //e2
+   adc2= Adc_u16Read(2);//A2
+   adc3= Adc_u16Read(7); //E2
 
-     tem = (adc/2.2);
+     tem = (adc/2.2);  //  esta formula no es la de  el sesor de temperaura (lm35) esta fromula la use para prueva   aqui use un potenciometro  como sensor 
      setpot=(adc2/2.2);
      pot = (adc3/2.2);
     
                  
-            HD44780_SetCursor(0,1);               /*se cambia el cursor a la linea 2 columna 5*/
-            xprintf("set%3d",setpot);
+            HD44780_SetCursor(0,1);              
+            xprintf("set%3d",setpot);    // poteciometro   usa como seleccion de temperatura deseada 
             Delays_ms(50);
 
-            HD44780_SetCursor(1,1);               /*se cambia el cursor a la linea 2 columna 5*/
+            HD44780_SetCursor(1,1);              
             xprintf("tem%3d",tem); //  en esta parte se utilizara un potenciometro  en ves del sensor
             Delays_ms(50);
 
              HD44780_SetCursor(0,8);
               xprintf("vel%3d",pot); //  en esta parte se utilizara un potenciometro  en ves del sensor
-               Delays_ms(50);                  /*se cambia el cursor a la linea 2 columna 5*/
+               Delays_ms(50);                  
                     
-                                 /*apago pin RA2*/
+                                 
             
                
             if(tem<setpot)
                {
                    Gpios_WritePin(GPIOS_PORTB, 2, 0);
 
-                   Pwm_DutyCycle(PWM_PORT1, PWM_CHANNEL_A, 120); /*Se�al al 50%*/
+                   Pwm_DutyCycle(PWM_PORT1, PWM_CHANNEL_A, 120); 
                }   
                
             if(tem>setpot)
